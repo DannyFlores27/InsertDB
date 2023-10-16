@@ -5,34 +5,34 @@ import java.sql.SQLException;
 
 class Main {
   public static void main(String[] args) {
-    String url = "jdbc:mysql://localhost:3306/tu_base_de_datos";
-    String usuario = "tu_usuario";
-    String contraseña = "tu_contraseña";
+    String url = "jdbc:mysql://localhost:3306/PrimerDB";
+    String usuario = "Alex";
+    String contraseña = "123321.0";
     Connection conexion = null;
 
     try {
         conexion = DriverManager.getConnection(url, usuario, contraseña);
 
-        // Inserción (INSERT)
-        String insercionSQL = "INSERT INTO mi_tabla (nombre, edad) VALUES (?, ?)";
+        // Insert
+        String insercionSQL = "INSERT INTO PrimerDB (nombre, edad) VALUES ('Armando', 23)";
         PreparedStatement sentenciaInsercion = conexion.prepareStatement(insercionSQL);
-        sentenciaInsercion.setString(1, "EjemploNombre");
+        sentenciaInsercion.setString(1, "Pedro");
         sentenciaInsercion.setInt(2, 25);
         sentenciaInsercion.executeUpdate();
         sentenciaInsercion.close();
 
-        // Actualización (UPDATE)
-        String actualizacionSQL = "UPDATE mi_tabla SET edad = ? WHERE nombre = ?";
+        // Update
+        String actualizacionSQL = "UPDATE PrimerDB SET edad = 30 WHERE nombre = 'Pedro'";
         PreparedStatement sentenciaActualizacion = conexion.prepareStatement(actualizacionSQL);
-        sentenciaActualizacion.setInt(1, 30);
-        sentenciaActualizacion.setString(2, "EjemploNombre");
+        sentenciaActualizacion.setInt(1, 35);
+        sentenciaActualizacion.setString(2, "Juan");
         sentenciaActualizacion.executeUpdate();
         sentenciaActualizacion.close();
 
-        // Eliminación (DELETE)
-        String eliminacionSQL = "DELETE FROM mi_tabla WHERE nombre = ?";
+        // Delete
+        String eliminacionSQL = "DELETE FROM PrimerDB WHERE nombre = 'Pedro'";
         PreparedStatement sentenciaEliminacion = conexion.prepareStatement(eliminacionSQL);
-        sentenciaEliminacion.setString(1, "EjemploNombre");
+        sentenciaEliminacion.setString(1, "Juan");
         sentenciaEliminacion.executeUpdate();
         sentenciaEliminacion.close();
 
